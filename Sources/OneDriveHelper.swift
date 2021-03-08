@@ -52,6 +52,16 @@ public final class OneDriveFileObject: FileObject {
         self.fileHash = (hashes?["sha1Hash"] as? String) ?? (hashes?["quickXorHash"] as? String)
     }
     
+    /// This value is a temporary URL that can be used to download a file from OneDrive
+    public internal(set) var downloadURL: URL? {
+        get {
+            return allValues[.dowwnloadURLKey] as? URL
+        }
+        set {
+            allValues[.downloadURLKey] = newValue
+        }
+    }
+    
     /// The document identifier is a value assigned by the OneDrive to a file.
     /// This value is used to identify the document regardless of where it is moved on a volume.
     public internal(set) var id: String? {
