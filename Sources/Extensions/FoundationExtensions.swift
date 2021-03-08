@@ -72,6 +72,8 @@ extension URLError {
 
 extension URLResourceKey {
     /// **FileProvider** returns url of file object.
+    public static let downloadURLKey = URLResourceKey(rawValue: "NSURLDownloadURLKey")
+    /// **FileProvider** returns url of file object.
     public static let fileURLKey = URLResourceKey(rawValue: "NSURLFileURLKey")
     /// **FileProvider** returns modification date of file in server
     public static let serverDateKey = URLResourceKey(rawValue: "NSURLServerDateKey")
