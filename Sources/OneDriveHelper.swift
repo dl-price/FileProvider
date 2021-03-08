@@ -38,6 +38,7 @@ public final class OneDriveFileObject: FileObject {
             path = "id:\(id)"
         }
         let url = baseURL.map { OneDriveFileObject.url(of: path, modifier: nil, baseURL: $0, route: route) }
+        self.downloadURL = json["@microsoft.graph.downloadUrl"] as! URL
         super.init(url: url, name: name, path: path)
         self.id = id
         self.size = (json["size"] as? NSNumber)?.int64Value ?? -1
@@ -55,7 +56,7 @@ public final class OneDriveFileObject: FileObject {
     /// This value is a temporary URL that can be used to download a file from OneDrive
     public internal(set) var downloadURL: URL? {
         get {
-            return allValues[.dowwnloadURLKey] as? URL
+            return allValues[.downloadURLKey] as? URL
         }
         set {
             allValues[.downloadURLKey] = newValue
