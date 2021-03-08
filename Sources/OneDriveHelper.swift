@@ -39,7 +39,7 @@ public final class OneDriveFileObject: FileObject {
         }
         let url = baseURL.map { OneDriveFileObject.url(of: path, modifier: nil, baseURL: $0, route: route) }
         super.init(url: url, name: name, path: path)
-        self.downloadURL = json["@microsoft.graph.downloadUrl"] as? URL
+        self.downloadURL = (json["@microsoft.graph.downloadUrl"] as? String).flatMap { URL(string: $0) }
         self.id = id
         self.size = (json["size"] as? NSNumber)?.int64Value ?? -1
         self.childrensCount = (json["folder"] as? [String: Any])?["childCount"] as? Int
